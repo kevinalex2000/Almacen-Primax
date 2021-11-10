@@ -1,3 +1,4 @@
+from Helpers import Helpers
 from Menu.MenuMantenimientoProductos import MenuMantenimientoProductos
 
 class MenuPrincipal:
@@ -6,6 +7,8 @@ class MenuPrincipal:
         self.menuMantenimientoProductos = MenuMantenimientoProductos()
     
     def Mostrar(self):
+        Helpers.Limpiar()
+        Helpers.MensajeBienvenida()
         print ("\nMenu Principal: \n")
         print ("1 - Mantenimiento de Productos")
         print ("2 - Registrar Compras")
@@ -16,5 +19,16 @@ class MenuPrincipal:
 
         opcionElegida = input("Selecciona una opcion para continuar: ")
         
+        result = True
+
         if opcionElegida == '1':
-            self.menuMantenimientoProductos.Mostrar()
+            result = self.menuMantenimientoProductos.Mostrar()
+        elif opcionElegida == '0':
+            return False
+        else:
+            Helpers.MensajeError("Ha escrito una opcion incorrecta.")
+            input("Pulsa Enter para volver a intentar...")
+            self.Mostrar()
+
+        if result == False:
+            return self.Mostrar()

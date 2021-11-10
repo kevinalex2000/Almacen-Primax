@@ -12,6 +12,7 @@
     <OutputPath>.</OutputPath>
     <Name>Consola</Name>
     <RootNamespace>PythonApplication1</RootNamespace>
+    <PublishUrl>D:\Users\Equipo\Proyectos\Almacen Rosaly\Publish</PublishUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -25,6 +26,9 @@
     <Compile Include="Helpers.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Static\Colores.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Menu\MenuMantenimientoProductos.py">
       <SubType>Code</SubType>
     </Compile>
@@ -35,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Menu\" />
+    <Folder Include="Static\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
