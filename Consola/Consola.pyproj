@@ -25,10 +25,16 @@
     <Compile Include="Helpers.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Menu.py">
+    <Compile Include="Menu\MenuMantenimientoProductos.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Menu\MenuPrincipal.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Principal.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Menu\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
