@@ -30,8 +30,8 @@ def ingresar():
         index.destroy()
         if __name__ == "__main__":
             ventana = Tk()
-            ventana.title('')
-            ventana.minsize(height= 475, width=795)
+            ventana.title('Almacen de productos')
+            ventana.minsize(height= 600, width=900)
             ventana.geometry('1000x500+180+80')
             app = Ventana(ventana)
             app.mainloop()
