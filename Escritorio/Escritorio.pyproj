@@ -26,6 +26,13 @@
     <Compile Include="login.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Modules\Clientes.py" />
+    <Compile Include="Modules\Compras.py" />
+    <Compile Include="Modules\Productos.py" />
+    <Compile Include="Modules\Ventas.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Modules\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

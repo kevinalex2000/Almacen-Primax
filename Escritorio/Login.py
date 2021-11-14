@@ -7,7 +7,7 @@ from App import Ventana
  
 index=Tk()
 index.title("LOGIN")
-index.geometry("300x150")
+index.geometry("300x125")
 index.resizable(width=False, height=False)
 
 luser=Label(index, text="Ingrese nombre de usuario:")
@@ -27,7 +27,7 @@ epas.pack()
 
 def ingresar():
     if user.get()=="admin" and pas.get()=="admin":
-        
+        index.destroy()
         if __name__ == "__main__":
             ventana = Tk()
             ventana.title('')
