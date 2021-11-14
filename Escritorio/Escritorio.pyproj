@@ -2,17 +2,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>5c60a54b-0505-4e0a-aaac-15a972769ed7</ProjectGuid>
-    <ProjectHome>
-    </ProjectHome>
-    <StartupFile>Principal.py</StartupFile>
+    <ProjectGuid>85a8f8c7-756d-4fb0-8732-f52913d1f627</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>login.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>Consola</Name>
-    <RootNamespace>PythonApplication1</RootNamespace>
-    <PublishUrl>D:\Users\Equipo\Proyectos\Almacen Rosaly\Publish</PublishUrl>
+    <Name>Escritorio</Name>
+    <RootNamespace>Escritorio</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,23 +22,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Helpers.py">
+    <Compile Include="app.py" />
+    <Compile Include="login.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Static\Colores.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Menu\MenuMantenimientoProductos.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Menu\MenuPrincipal.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Principal.py" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Menu\" />
-    <Folder Include="Static\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

@@ -2,12 +2,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
+import sys
 from Menu.MenuPrincipal import MenuPrincipal
 from Helpers import Helpers
-import os
 
 menuPrincipal = MenuPrincipal()
-helpers = Helpers()
 
 loginExitoso = False
 print("\nIniciar Sesión para continuar...")
@@ -20,10 +19,10 @@ while loginExitoso == False:
 	if (usuario == "admin" and contraseña == "admin"):
 		loginExitoso = True
 	else:
-		print("\nEl usuario o contraseña no coinciden.")
+		Helpers.MensajeError("\nEl usuario o contraseña no coinciden.")
 		input("Pulsa Enter para volver a intentar...")
 
-helpers.Clear()
+result = menuPrincipal.Mostrar()
 
-print ("\n!Bienvenido a los Almacenes¡")
-menuPrincipal.Mostrar()
+if result == False:
+	sys.exit()
