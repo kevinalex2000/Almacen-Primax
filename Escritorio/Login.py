@@ -27,7 +27,7 @@ epas.pack()
 
 def ingresar():
     if user.get()=="admin" and pas.get()=="admin":
-        
+        index.destroy()
         if __name__ == "__main__":
             ventana = Tk()
             ventana.title('')
