@@ -6,8 +6,10 @@ from App import Ventana
  
  
 index=Tk()
-index.title("LOGIN")
+index.title("Iniciar Sesion")
+index.minsize(height= 100, width=300)
 index.geometry("300x125")
+index.eval('tk::PlaceWindow . center')
 index.resizable(width=False, height=False)
 
 luser=Label(index, text="Ingrese nombre de usuario:")

@@ -75,19 +75,6 @@ class Ventana(Frame):
 		self.paginas.select([self.frame_seis])
 
 	def widgets(self):
-		self.imagen_inicio = PhotoImage(master =self.master, file ='./assets/img/inicio.png')
-		self.imagen_menu = PhotoImage(master =self.master, file ='./assets/img/menu.png')
-		self.imagen_datos = PhotoImage(master =self.master, file ='./assets/img/datos.png')
-		self.imagen_registrar = PhotoImage(master =self.master, file ='./assets/img/escribir.png')
-		self.imagen_actualizar = PhotoImage(master =self.master, file ='./assets/img/actualizar.png')
-		self.imagen_buscar = PhotoImage(master =self.master, file ='./assets/img/buscar.png')
-		self.imagen_ajustes = PhotoImage(master =self.master, file ='./assets/img/configuracion.png')
-
-		self.logo = PhotoImage(master =self.master, file ='assets/img/logo.png')
-		self.imagen_uno = PhotoImage(master =self.master, file ='assets/img/imagen_uno.png')
-		self.imagen_dos= PhotoImage(master =self.master, file ='assets/img/imagen_dos.png')
-		self.dia = PhotoImage(master =self.master, file ='assets/img/dia.png')
-		self.noche= PhotoImage(master =self.master, file ='assets/img/noche.png')
 
 		#############################  CREAR  PAGINAS  ##############################
 		estilo_paginas = ttk.Style()
