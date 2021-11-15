@@ -12,6 +12,7 @@
     <Name>Escritorio</Name>
     <RootNamespace>Escritorio</RootNamespace>
     <IsWindowsApplication>False</IsWindowsApplication>
+    <PublishUrl>D:\Users\Equipo\Proyectos\Almacen Rosaly\Publish</PublishUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>

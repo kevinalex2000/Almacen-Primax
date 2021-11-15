@@ -6,11 +6,10 @@ from App import Ventana
  
 #Declaramos el index como variable para almacenar la funcion que llama a la ventana
 index=Tk()
-#Agregamos la propiedad de titulo a la ventana
-index.title("LOGIN")
-#Definimos la medida que tendra por defecto nuestra ventana
+index.title("Iniciar Sesion")
+index.minsize(height= 100, width=300)
 index.geometry("300x125")
-#Configuramos para que no pueda ser editable el tamaño
+index.eval('tk::PlaceWindow . center')
 index.resizable(width=False, height=False)
 
 #Declaramos la funcion Label que sera nuestra primera etiqueta
@@ -39,8 +38,8 @@ def ingresar():
         if __name__ == "__main__":
             #Hacemos el llamado de la nueva ventana
             ventana = Tk()
-            ventana.title('')
-            ventana.minsize(height= 475, width=795)
+            ventana.title('Almacen de productos')
+            ventana.minsize(height= 600, width=900)
             ventana.geometry('1000x500+180+80')
             app = Ventana(ventana)
             app.mainloop()
