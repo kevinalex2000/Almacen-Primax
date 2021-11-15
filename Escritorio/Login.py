@@ -6,10 +6,14 @@ from App import Ventana
  
 #Declaramos el index como variable para almacenar la funcion que llama a la ventana
 index=Tk()
+#Agregamos el titulo a la ventana
 index.title("Iniciar Sesion")
+#Definimos el tamaño de la ventana
 index.minsize(height= 100, width=300)
 index.geometry("300x125")
+#Centramos la ventana
 index.eval('tk::PlaceWindow . center')
+#Hacemos que no pueda ser editable su tamaño
 index.resizable(width=False, height=False)
 
 #Declaramos la funcion Label que sera nuestra primera etiqueta
