@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>85a8f8c7-756d-4fb0-8732-f52913d1f627</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>login.py</StartupFile>
+    <StartupFile>Login.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -23,8 +23,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="app.py" />
-    <Compile Include="login.py">
+    <Compile Include="App.py" />
+    <Compile Include="Login.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Modules\Clientes.py" />
