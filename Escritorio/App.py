@@ -1,6 +1,11 @@
 from tkinter import  Tk, Button, Entry, Label, ttk, PhotoImage, LEFT
 from tkinter import  StringVar,Scrollbar,Frame
 
+from Modules.Productos import ModuleProductos
+from Modules.Compras import ModuleCompras
+from Modules.Clientes import ModuleClientes
+from Modules.Ventas import ModuleVentas
+
 class Ventana(Frame):
 
 	## Metodo de Inicializacion
@@ -41,53 +46,25 @@ class Ventana(Frame):
 		self.paginas.grid(column=0,row=0, sticky='nsew') ## Indicamos el espaciado y ubicacion
 
 		## Empezamos a crear los frames con ubicacion en paginas
-		self.frame_uno = Frame(self.paginas, bg='white')
-		self.frame_dos = Frame(self.paginas, bg='white')
-		self.frame_tres = Frame(self.paginas, bg='white')
-		self.frame_cuatro = Frame(self.paginas, bg='white')
-		self.frame_cinco = Frame(self.paginas, bg='white')
-		self.frame_seis = Frame(self.paginas, bg='white')
-		self.frame_siete = Frame(self.paginas, bg='white')
+		self.frame_inicio = Frame(self.paginas, bg='white')
+		self.frame_productos = Frame(self.paginas, bg='white')
+		self.frame_compras = Frame(self.paginas, bg='white')
+		self.frame_ventas = Frame(self.paginas, bg='white')
+		self.frame_clientes = Frame(self.paginas, bg='white')
+		self.frame_estadisticas = Frame(self.paginas, bg='white')
+		self.frame_historial = Frame(self.paginas, bg='white')
 
 		## Agregamos los Tabs en el Menu superior con el texto y el frame que mostrara al estar activo
-		self.paginas.add(self.frame_uno, text='Inicio')
-		self.paginas.add(self.frame_dos, text='Productos')
-		self.paginas.add(self.frame_tres, text='Compras')
-		self.paginas.add(self.frame_cuatro, text='Ventas')
-		self.paginas.add(self.frame_cinco, text='Clientes')
-		self.paginas.add(self.frame_seis, text='Estadisticas')
-		self.paginas.add(self.frame_siete, text='Historial')
+		self.paginas.add(self.frame_inicio, text='Inicio')
+		self.paginas.add(self.frame_productos, text='Productos')
+		self.paginas.add(self.frame_compras, text='Compras')
+		self.paginas.add(self.frame_ventas, text='Ventas')
+		self.paginas.add(self.frame_clientes, text='Clientes')
+		self.paginas.add(self.frame_estadisticas, text='Estadisticas')
+		self.paginas.add(self.frame_historial, text='Historial')
 		
 		## Agregamos controles a los frames
-		self.agregar_controles_frame_productos()
-		self.agregar_controles_frame_compras()
-
-	## Agrega los controles al frame_dos
-	def agregar_controles_frame_productos(self):
-		## Agregamos Titulo instanciando un elemento Label e indicandole su posicion
-		Label(self.frame_dos, text= 'Administrar Productos', bg='white',  font= ('Arial', 16, 'bold'), justify=LEFT).grid(column =0, row=0, sticky='w')
-		
-		#Creacion de una tabla
-		self.frame_tabla_productos = Frame(self.frame_dos, bg= 'gray90') ## Creamos el frame para una tabla y colocamos el color de fondo
-		self.frame_tabla_productos.grid(columnspan=1, row=2, sticky='nsew') ## Indicamos posicion y espacio del frame para la tabla
-		self.tabla_productos = ttk.Treeview(self.frame_tabla_productos)  ## Creamos Tabla instanciando TreeView
-		self.tabla_productos.grid(column=0, row=0, sticky='nsew') ## Indicamos posicion y espacio de la tabla dentro del frame
-		ladoy = ttk.Scrollbar(self.frame_tabla_productos, orient ='vertical', command = self.tabla_productos.yview) ## Agregamos scrollbar vertical instanciando Scrollbar
-		ladoy.grid(column = 1, row = 0, sticky='ns') ## Indicamos la posicion y espaciado del scrollbar
-
-		self.tabla_productos.configure(yscrollcommand = ladoy.set) ## Configuramos comportamiento del scrollbar con la tabla
-		self.tabla_productos['columns'] = ('Nombre', 'Precio', 'Cantidad') ## Mencionamos las columnas tabla
-		self.tabla_productos.column('#0', minwidth=100, width=120, anchor='center') ## Colocamos Columna index
-		self.tabla_productos.column('Nombre', minwidth=100, width=130 , anchor='center') ## Colocamos Columna Nombre
-		self.tabla_productos.column('Precio', minwidth=100, width=120 , anchor='center') ## Colocamos Columna Precio
-		self.tabla_productos.column('Cantidad', minwidth=100, width=105, anchor='center') ## Colocamos Columna Cantidad
-
-		self.tabla_productos.heading('#0', text='Codigo', anchor ='center') ## Colocamos Cabecera de columna index
-		self.tabla_productos.heading('Nombre', text='Nombre', anchor ='center') ## Colocamos Cabecera de columna Nombre
-		self.tabla_productos.heading('Precio', text='Precio', anchor ='center') ## Colocamos Cabecera de columna Precio
-		self.tabla_productos.heading('Cantidad', text='Cantidad', anchor ='center') ## Colocamos Cabecera de columna Cantidad
-		
-	## Agrega los controles al frame_tres
-	def agregar_controles_frame_compras(self):
-		## Agregamos Titulo instanciando un elemento Label e indicandole su posicion
-		Label(self.frame_tres, text = 'Compras', bg ='white', font=('Arial',16,'bold')).grid(column =0, row=0, sticky='w')
+		ModuleProductos(self.frame_productos)
+		ModuleCompras(self.frame_compras)
+		ModuleClientes(self.frame_clientes)
+		ModuleVentas(self.frame_ventas)
