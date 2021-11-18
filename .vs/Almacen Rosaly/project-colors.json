@@ -5,7 +5,12 @@
       "ProjectGuid": "85a8f8c7-756d-4fb0-8732-f52913d1f627",
       "DisplayName": "Escritorio",
       "ColorIndex": 0
+    },
+    "5c60a54b-0505-4e0a-aaac-15a972769ed7": {
+      "ProjectGuid": "5c60a54b-0505-4e0a-aaac-15a972769ed7",
+      "DisplayName": "Consola",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }
