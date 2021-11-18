@@ -2,7 +2,7 @@ from tkinter import  Tk, Button, Entry, Label, ttk, PhotoImage, LEFT
 from tkinter import  StringVar,Scrollbar,Frame
 from tkinter.ttk import Style
 
-from Shared.Helpers import Controls
+from Shared.Helpers import Controls, Excel
 from Shared.Constants import Constants
 
 class ModuleProductos:
@@ -35,6 +35,8 @@ class ModuleProductos:
         self.tabla_productos.heading('Precio', text='Precio', anchor ='center') ## Colocamos Cabecera de columna Precio
         self.tabla_productos.heading('Cantidad', text='Cantidad', anchor ='center') ## Colocamos Cabecera de columna Cantidad
 
+        self.listar_datos_tabla()
+
     def crear_formulario(self):
         ## Formulario
         frame_formulario = Frame(self.frame, bg= Constants.getBgColor())
@@ -66,3 +68,19 @@ class ModuleProductos:
         Button(frame_formulario_botones, text="Agregar").grid(column=0, row=3, sticky='w')
         Button(frame_formulario_botones, text="Modificar").grid(column=1, row=3, sticky='w', padx=10)
         Button(frame_formulario_botones, text="Eliminar").grid(column=2, row=3, sticky='w')
+
+    def listar_datos_tabla(self):
+        self.tabla_productos.delete(*self.tabla_productos.get_children())
+
+        datos = Excel.ObtenerExcel("Data/Productos.xlsx", "Hoja1")
+
+        for fila in datos.values:
+            arr_fila = []
+            for celda in fila:
+                arr_fila.append(celda)
+            self.tabla_productos.insert("", "end", text = arr_fila[0], values= (arr_fila[1], arr_fila[2], arr_fila[3]))
+
+    def insertar_producto(self, codigo, nombre, precio, cantidad):
+        
+        datos = Excel.ObtenerExcel("Data/Productos.xlsx", "Hoja1")
+        nueva_data = datos.values.append([codigo,nombre,precio,cantidad])
