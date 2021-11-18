@@ -49,7 +49,7 @@ class ModuleClientes:
         Button(frame_formulario_botones, text="Agregar", command=self.AgregarCliente).grid(column=0, row=3, sticky='w')
         Button(frame_formulario_botones, text="Modificar").grid(column=1, row=3, sticky='w', padx=10)
         Button(frame_formulario_botones, text="Eliminar").grid(column=2, row=3, sticky='w')
-        
+      
         #Validamos si existe el Excel 
         
         if(os.path.exists("Clientes.xlsx")):

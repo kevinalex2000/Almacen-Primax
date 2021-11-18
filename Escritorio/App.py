@@ -6,6 +6,8 @@ from Modules.Compras import ModuleCompras
 from Modules.Clientes import ModuleClientes
 from Modules.Ventas import ModuleVentas
 
+from Shared.Constants import Constants
+
 class Ventana(Frame):
 
 	## Metodo de Inicializacion
@@ -46,13 +48,13 @@ class Ventana(Frame):
 		self.paginas.grid(column=0,row=0, sticky='nsew') ## Indicamos el espaciado y ubicacion
 
 		## Empezamos a crear los frames con ubicacion en paginas
-		self.frame_inicio = Frame(self.paginas, bg='white')
-		self.frame_productos = Frame(self.paginas, bg='white')
-		self.frame_compras = Frame(self.paginas, bg='white')
-		self.frame_ventas = Frame(self.paginas, bg='white')
-		self.frame_clientes = Frame(self.paginas, bg='white')
-		self.frame_estadisticas = Frame(self.paginas, bg='white')
-		self.frame_historial = Frame(self.paginas, bg='white')
+		self.frame_inicio = Frame(self.paginas, bg=Constants.getBgColor())
+		self.frame_productos = Frame(self.paginas, bg=Constants.getBgColor())
+		self.frame_compras = Frame(self.paginas, bg=Constants.getBgColor())
+		self.frame_ventas = Frame(self.paginas, bg=Constants.getBgColor())
+		self.frame_clientes = Frame(self.paginas, bg=Constants.getBgColor())
+		self.frame_estadisticas = Frame(self.paginas, bg=Constants.getBgColor())
+		self.frame_historial = Frame(self.paginas, bg=Constants.getBgColor())
 
 		## Agregamos los Tabs en el Menu superior con el texto y el frame que mostrara al estar activo
 		self.paginas.add(self.frame_inicio, text='Inicio')

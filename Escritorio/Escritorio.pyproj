@@ -31,12 +31,16 @@
     <Compile Include="Modules\Compras.py" />
     <Compile Include="Modules\Productos.py" />
     <Compile Include="Modules\Ventas.py" />
+    <Compile Include="Shared\Constants.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Shared\Helpers.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Modules\" />
+    <Folder Include="Data\" />
     <Folder Include="Shared\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

@@ -4,6 +4,8 @@ import pandas as pd
 from pandas import ExcelWriter
 from pandas.core.indexes.base import Index
 
+from Shared.Constants import Constants
+
 class Controls:
 
     @staticmethod
@@ -23,6 +25,8 @@ class Controls:
 
         df.to_excel('Clientes.xlsx', sheet_name='Cliente',index=FALSE)   
 
+class Excel:
+
     @staticmethod
     def InsertarExcelCliente(arrayCliente):
         data = {
@@ -33,8 +37,9 @@ class Controls:
         
         df = pd.DataFrame(data, columns = ['DNI', 'Nombre', 'Numero de Celular', 'Direccion'])
 
-        df.to_excel('Clientes.xlsx', sheet_name='Cliente',index=FALSE)   
+        df.to_excel('Clientes.xlsx', sheet_name='Cliente',index=FALSE)
+
     @staticmethod
-    def ObtenerExcelClientes():
-        df = pd.read_excel('Clientes.xlsx', sheet_name='Cliente');
+    def ObtenerExcel(rutaExcel, hoja):
+        df = pd.read_excel(rutaExcel, sheet_name=hoja);
         return df
