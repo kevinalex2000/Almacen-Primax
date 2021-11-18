@@ -31,6 +31,9 @@
     <Compile Include="Modules\Compras.py" />
     <Compile Include="Modules\Productos.py" />
     <Compile Include="Modules\Ventas.py" />
+    <Compile Include="Shared\Constants.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Shared\Helpers.py">
       <SubType>Code</SubType>
     </Compile>
