@@ -49,14 +49,3 @@ class ModuleClientes:
         Button(frame_formulario_botones, text="Modificar").grid(column=1, row=3, sticky='w', padx=10)
         Button(frame_formulario_botones, text="Eliminar").grid(column=2, row=3, sticky='w')
         
-        #Validamos si existe el Excel 
-        
-        if(os.path.exists("Clientes.xlsx")):
-             #Llamamos al Excel y cargamos la data
-             dataClientes = Controls.ObtenerExcelClientes()
-        else:
-            #Llamamos a la funcion de crear el Excel 
-            Controls.CrearExcelCliente()
-        #Insertamos el primer Cliente
-        
-       
