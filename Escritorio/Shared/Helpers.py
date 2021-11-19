@@ -1,4 +1,4 @@
-from tkinter import  Label
+from tkinter import  Label, messagebox
 from tkinter.constants import FALSE
 import pandas as pd
 from pandas import ExcelWriter
@@ -10,36 +10,42 @@ class Controls:
 
     @staticmethod
     def colocarTitulo(frame, titulo):
-        Label(frame, text = titulo, bg ='white', font=('Arial',16,'bold')).grid(column =0, row=0, sticky='w')
+        Label(frame, text = titulo, bg =Constants.getBgColor(), font=('Arial',16,'bold')).grid(column =0, row=0, sticky='w', padx=10, pady=10)
     
-
     @staticmethod
-    def CrearExcelCliente():
-        data = {
-            'DNI': [],
-            'Nombre': [],
-            'Numero de Celular': [],
-            'Direccion': []}
-        
-        df = pd.DataFrame(data, columns = ['DNI', 'Nombre', 'Numero de Celular', 'Direccion'])
-
-        df.to_excel('Clientes.xlsx', sheet_name='Cliente',index=FALSE)   
+    def MandarAdvertencia(texto):
+        messagebox.showwarning(title="Advertencia", message=texto)
 
 class Excel:
 
     @staticmethod
-    def InsertarExcelCliente(arrayCliente):
-        data = {
-            'DNI': [],
-            'Nombre': [],
-            'Numero de Celular': [],
-            'Direccion': []}
-        
-        df = pd.DataFrame(data, columns = ['DNI', 'Nombre', 'Numero de Celular', 'Direccion'])
+    def GuardarExcel(rutaExcel, hoja, datos, columnas):
+        data = {}
 
-        df.to_excel('Clientes.xlsx', sheet_name='Cliente',index=FALSE)
+        for columna in columnas:
+            data[columna] = []
+
+        for fila in datos:
+            i = 0
+            for celda in fila:
+                data[columnas[i]].append(celda)
+                i += 1
+        
+        df = pd.DataFrame(data, columns = columnas)
+        df.to_excel(rutaExcel, sheet_name=hoja,index=FALSE)
 
     @staticmethod
     def ObtenerExcel(rutaExcel, hoja):
         df = pd.read_excel(rutaExcel, sheet_name=hoja);
         return df
+
+class Transform:
+    @staticmethod
+    def dArrayToArray(darray):
+        array = []
+        for fila in darray:
+            arrfila = []
+            for valor in fila:
+                arrfila.append(valor)
+            array.append(arrfila)
+        return array
