@@ -48,13 +48,13 @@ class Ventana(Frame):
 		self.paginas.grid(column=0,row=0, sticky='nsew') ## Indicamos el espaciado y ubicacion
 
 		## Empezamos a crear los frames con ubicacion en paginas
-		self.frame_inicio = Frame(self.paginas, bg=Constants.getBgColor())
-		self.frame_productos = Frame(self.paginas, bg=Constants.getBgColor())
-		self.frame_compras = Frame(self.paginas, bg=Constants.getBgColor())
-		self.frame_ventas = Frame(self.paginas, bg=Constants.getBgColor())
-		self.frame_clientes = Frame(self.paginas, bg=Constants.getBgColor())
-		self.frame_estadisticas = Frame(self.paginas, bg=Constants.getBgColor())
-		self.frame_historial = Frame(self.paginas, bg=Constants.getBgColor())
+		self.frame_inicio = Frame(self.paginas, bg=Constants.get_bgcolor())
+		self.frame_productos = Frame(self.paginas, bg=Constants.get_bgcolor())
+		self.frame_compras = Frame(self.paginas, bg=Constants.get_bgcolor())
+		self.frame_ventas = Frame(self.paginas, bg=Constants.get_bgcolor())
+		self.frame_clientes = Frame(self.paginas, bg=Constants.get_bgcolor())
+		self.frame_estadisticas = Frame(self.paginas, bg=Constants.get_bgcolor())
+		self.frame_historial = Frame(self.paginas, bg=Constants.get_bgcolor())
 
 		## Agregamos los Tabs en el Menu superior con el texto y el frame que mostrara al estar activo
 		self.paginas.add(self.frame_inicio, text='Inicio')

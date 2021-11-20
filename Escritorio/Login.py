@@ -50,14 +50,13 @@ def ingresar():
 
     #Si el usuario en incorrecto
     else:
-        ObtenerError("Accesos incorrectos")
-
+        obtener_error("Accesos incorrectos")
 
 #Hacemos la creacion del boton  donde hacemos el llamado de la validacion
 b1=Button(index, text="Entrar", command=ingresar)
 b1.pack(side=BOTTOM)
 
-def ObtenerError(val):
+def obtener_error(val):
     #Aca definimos el error 
     lacces=Label(index, text=val,foreground="red")
     lacces.pack()
