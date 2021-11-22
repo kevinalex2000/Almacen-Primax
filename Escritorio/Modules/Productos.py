@@ -9,14 +9,19 @@ class ModuleProductos:
 
     def __init__(self,frame):
         self.frame = frame
+        self.HojaExcel = "Hoja1"
 
         ## Agregamos Titulo instanciando un elemento Label e indicandole su posicion
-        Controls.colocarTitulo(frame, "Productos")
+        Controls.colocar_titulo(self.frame, "Productos")
 
         self.crear_formulario()
 
-        #Creacion de una tabla
-        self.frame_tabla_productos = Frame(frame, bg= Constants.getBgColor()) ## Creamos el frame para una tabla y colocamos el color de fondo
+        self.crear_tabla()
+        self.listar_datos_tabla()
+
+    def crear_tabla(self):
+        #Creacion de la tabla
+        self.frame_tabla_productos = Frame(self.frame, bg= Constants.get_bgcolor()) ## Creamos el frame para una tabla y colocamos el color de fondo
         self.frame_tabla_productos.grid(columnspan=1, row=3, sticky='nsew', padx=10, pady=10) ## Indicamos posicion y espacio del frame para la tabla
         self.tabla_productos = ttk.Treeview(self.frame_tabla_productos)  ## Creamos Tabla instanciando TreeView
         self.tabla_productos.grid(column=0, row=0, sticky='nsew') ## Indicamos posicion y espacio de la tabla dentro del frame
@@ -37,38 +42,36 @@ class ModuleProductos:
         self.tabla_productos.heading('Cantidad', text='Cantidad', anchor ='center') ## Colocamos Cabecera de columna Cantidad
         self.tabla_productos.heading('Cantidad Inicial', text='Cantidad Inicial', anchor ='center') ## Colocamos Cabecera de columna Cantidad Inicial
 
-        self.listar_datos_tabla()
-
     def crear_formulario(self):
         ## Formulario
-        frame_formulario = Frame(self.frame, bg= Constants.getBgColor())
+        frame_formulario = Frame(self.frame, bg= Constants.get_bgcolor())
         frame_formulario.grid(column=0, row=1, sticky='nsew', padx=10) 
 
-        label_codigo=Label(frame_formulario, text="Codigo:", bg= Constants.getBgColor())
+        label_codigo=Label(frame_formulario, text="Codigo:", bg= Constants.get_bgcolor())
         label_codigo.grid(column=0, row=2, sticky='w')
         self.codigo=StringVar()
         entry_codigo = Entry(frame_formulario, width=30, textvariable=self.codigo)
         entry_codigo.grid(column=0, row=3, sticky='w')
         
-        label_nombre=Label(frame_formulario, text="Nombre:", bg= Constants.getBgColor())
+        label_nombre=Label(frame_formulario, text="Nombre:", bg= Constants.get_bgcolor())
         label_nombre.grid(column=1, row=2, sticky='w', padx=10)
         self.nombre=StringVar()
         entry_nombre = Entry(frame_formulario, width=30, textvariable=self.nombre)
         entry_nombre.grid(column=1, row=3, sticky='w', padx=10)
         
-        label_precio=Label(frame_formulario, text="Precio:", bg= Constants.getBgColor())
+        label_precio=Label(frame_formulario, text="Precio:", bg= Constants.get_bgcolor())
         label_precio.grid(column=2, row=2, sticky='w')
         self.precio=StringVar()
         entry_precio = Entry(frame_formulario, width=30, textvariable=self.precio)
         entry_precio.grid(column=2, row=3, sticky='w')
         
-        label_cantidad_inicial=Label(frame_formulario, text="Cantidad Inicial:", bg= Constants.getBgColor())
+        label_cantidad_inicial=Label(frame_formulario, text="Cantidad Inicial:", bg= Constants.get_bgcolor())
         label_cantidad_inicial.grid(column=3, row=2, sticky='w', padx=10)
         self.cantidad_inicial=StringVar()
         entry_cantidad_inicial = Entry(frame_formulario, width=30, textvariable=self.cantidad_inicial)
         entry_cantidad_inicial.grid(column=3, row=3, sticky='w', padx=10)
 
-        frame_formulario_botones = Frame(self.frame, bg= Constants.getBgColor())
+        frame_formulario_botones = Frame(self.frame, bg= Constants.get_bgcolor())
         frame_formulario_botones.grid(column=0, row=2, sticky='nsew', padx=10, pady=10) 
         Button(frame_formulario_botones, text="Agregar", command=self.btn_agregar_click).grid(column=0, row=3, sticky='w')
         Button(frame_formulario_botones, text="Modificar", command=self.btn_modificar_click).grid(column=1, row=3, sticky='w', padx=10)
@@ -77,7 +80,7 @@ class ModuleProductos:
     def btn_agregar_click(self):
         if self.validar_campos_vacios():
             if self.buscar_codigo_existente(self.codigo.get()):
-                Controls.MandarAdvertencia("El codigo ya existe, por favor registre otro codigo.")
+                Controls.mandar_advertencia("El codigo ya existe, por favor registre otro codigo.")
             else:
                 self.insertar_producto(self.codigo.get(),self.nombre.get(),float(self.precio.get()),int(self.cantidad_inicial.get()))
 
@@ -86,20 +89,20 @@ class ModuleProductos:
             if self.buscar_codigo_existente(self.codigo.get()):
                 self.modificar_producto(self.codigo.get(),self.nombre.get(),float(self.precio.get()))
             else:
-                Controls.MandarAdvertencia("El codigo digitado no existe.")
+                Controls.mandar_advertencia("El codigo digitado no existe.")
                 
     def btn_eliminar_click(self):
         if self.codigo.get() != "":
             if self.buscar_codigo_existente(self.codigo.get()):
                 self.eliminar_producto(self.codigo.get())
             else:
-                Controls.MandarAdvertencia("El codigo digitado no existe.")
+                Controls.mandar_advertencia("El codigo digitado no existe.")
         else:
-            Controls.MandarAdvertencia("El codigo no puede estar vacio.")
+            Controls.mandar_advertencia("El codigo no puede estar vacio.")
 
     def listar_datos_tabla(self):
         self.tabla_productos.delete(*self.tabla_productos.get_children())
-        datos = Excel.ObtenerExcel("Data/Productos.xlsx", "Hoja1")
+        datos = Excel.obtener_excel(Constants.get_url_excel_productos(), self.HojaExcel)
 
         for fila in datos.values:
             arr_fila = []
@@ -108,44 +111,44 @@ class ModuleProductos:
             self.tabla_productos.insert("", "end", text = arr_fila[0], values= (arr_fila[1], arr_fila[2], arr_fila[3], arr_fila[4]))
 
     def insertar_producto(self, codigo, nombre, precio, cantidad):
-        datos = Excel.ObtenerExcel("Data/Productos.xlsx", "Hoja1")
+        datos = Excel.obtener_excel(Constants.get_url_excel_productos(), self.HojaExcel)
 
-        values = Transform.dArrayToArray(datos.values)
+        values = Transform.dArray_to_array(datos.values)
         values.append([codigo,nombre,precio,cantidad,cantidad])
 
-        Excel.GuardarExcel("Data/Productos.xlsx", "Hoja1", values, datos.columns)
+        Excel.guardar_excel(Constants.get_url_excel_productos(), self.HojaExcel, values, datos.columns)
         self.listar_datos_tabla()
         self.limpiar_campos()
         
     def modificar_producto(self, codigo, nombre, precio):
-        datos = Excel.ObtenerExcel("Data/Productos.xlsx", "Hoja1")
+        datos = Excel.obtener_excel(Constants.get_url_excel_productos(), self.HojaExcel)
 
-        values = Transform.dArrayToArray(datos.values)
+        values = Transform.dArray_to_array(datos.values)
 
         for fila in values:
             if(fila[0] == codigo):
                 fila[1] = nombre
                 fila[2] = precio
 
-        Excel.GuardarExcel("Data/Productos.xlsx", "Hoja1", values, datos.columns)
+        Excel.guardar_excel(Constants.get_url_excel_productos(), self.HojaExcel, values, datos.columns)
         self.listar_datos_tabla()
         self.limpiar_campos()
 
     def eliminar_producto(self, codigo):
-        datos = Excel.ObtenerExcel("Data/Productos.xlsx", "Hoja1")
+        datos = Excel.obtener_excel(Constants.get_url_excel_productos(), self.HojaExcel)
 
         values = []
 
-        for fila in Transform.dArrayToArray(datos.values):
+        for fila in Transform.dArray_to_array(datos.values):
             if(fila[0] != codigo):
                 values.append(fila)
 
-        Excel.GuardarExcel("Data/Productos.xlsx", "Hoja1", values, datos.columns)
+        Excel.guardar_excel(Constants.get_url_excel_productos(), self.HojaExcel, values, datos.columns)
         self.listar_datos_tabla()
         self.limpiar_campos()
 
     def buscar_codigo_existente(self, codigo):
-        datos = Excel.ObtenerExcel("Data/Productos.xlsx", "Hoja1")
+        datos = Excel.obtener_excel(Constants.get_url_excel_productos(), self.HojaExcel)
         for fila in datos.values:
             if(fila[0] == codigo):
                 return True
@@ -154,13 +157,13 @@ class ModuleProductos:
     def validar_campos_vacios(self, cantidad_inicial_necesario = True):
         resultado = False
         if self.codigo.get() == "":
-            Controls.MandarAdvertencia("El codigo no puede estar vacio")
+            Controls.mandar_advertencia("El codigo no puede estar vacio")
         elif self.nombre.get() == "":
-            Controls.MandarAdvertencia("El nombre no puede estar vacio")
+            Controls.mandar_advertencia("El nombre no puede estar vacio")
         elif self.precio.get() == "":
-            Controls.MandarAdvertencia("El precio no puede estar vacio")
+            Controls.mandar_advertencia("El precio no puede estar vacio")
         elif self.cantidad_inicial.get() == "" and cantidad_inicial_necesario:
-            Controls.MandarAdvertencia("Agregar una cantidad inicial para continuar")
+            Controls.mandar_advertencia("Agregar una cantidad inicial para continuar")
         else:
             resultado = True
         return resultado
