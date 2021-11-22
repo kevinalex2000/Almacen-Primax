@@ -7,4 +7,4 @@ class ModuleVentas:
 
     def __init__(self,frame):
         ## Agregamos Titulo instanciando un elemento Label e indicandole su posicion
-        Controls.colocarTitulo(frame, "Ventas")
+        Controls.colocar_titulo(frame, "Ventas")
