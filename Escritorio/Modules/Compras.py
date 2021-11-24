@@ -1,4 +1,4 @@
-    from tkinter import  Tk, Button, Entry, Label, ttk, PhotoImage, LEFT
+from tkinter import  Tk, Button, Entry, Label, ttk, PhotoImage, LEFT
 from tkinter import  StringVar,Scrollbar,Frame
 
 from Shared.Helpers import Controls
