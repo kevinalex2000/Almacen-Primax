@@ -173,3 +173,16 @@ class ModuleProductos:
         self.nombre.set("")
         self.precio.set("")
         self.cantidad_inicial.set("")
+
+    
+    def obtener_proveedores_combo(self):
+        datos = Excel.obtener_excel(Constants.get_url_excel_proveedores(), self.HojaExcel)
+        resultado = []
+        index = 0
+        for fila in datos.values:
+            resultado.append(fila[0]+" - "+fila[1])
+            index += 1
+        return resultado
+
+    def restar_stock_producto(self, codigo, cantidad):
+        print("prueba")
