@@ -16,5 +16,8 @@ class Constants:
     def get_url_excel_proveedores():
         return "./Data/Proveedores.xlsx"
     @staticmethod
+    def get_url_excel_compras():
+        return "./Data/Compras.xlsx"
+    @staticmethod
     def get_url_excel_detalle_compras():
         return "./Data/Detalles Compras.xlsx"
