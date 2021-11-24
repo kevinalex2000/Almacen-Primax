@@ -15,6 +15,9 @@ class Controls:
     @staticmethod
     def mandar_advertencia(texto):
         messagebox.showwarning(title="Advertencia", message=texto)
+    @staticmethod
+    def mandar_informacion(texto):
+        messagebox.showinfo(title="Informacion", message=texto)
 
 class Excel:
 
