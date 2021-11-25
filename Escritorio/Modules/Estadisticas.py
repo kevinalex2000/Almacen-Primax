@@ -40,10 +40,6 @@ class ModuleEstadisticas:
             values.append(fila[2])
             index += 1
 
-        #names = ['group_a', 'group_b', 'group_c']
-        #values = [1, 10, 100]
-
-
         plt.bar(names, values)
         plt.ylabel('Productos mas Vendidos')
         plt.show()
