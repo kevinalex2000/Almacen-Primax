@@ -5,6 +5,7 @@ from Modules.Productos import ModuleProductos
 from Modules.Compras import ModuleCompras
 from Modules.Clientes import ModuleClientes
 from Modules.Ventas import ModuleVentas
+from Modules.Historial import ModuleHistorial
 
 from Shared.Constants import Constants
 
@@ -70,6 +71,7 @@ class Ventana(Frame):
 		ModuleCompras(self.frame_compras)
 		ModuleClientes(self.frame_clientes)
 		ModuleVentas(self.frame_ventas)
+		ModuleHistorial(self.frame_ventas)
 
 		
 		self.frame_productos.bind("<<NotebookTabChanged>>", self.notebook_tab_changed)
@@ -97,6 +99,7 @@ class Ventana(Frame):
 			frame_reload = self.frame_estadisticas
 		elif pagina_index == 6:
 			frame_reload = self.frame_historial
+			module_reload = ModuleHistorial
 		
 		if frame_reload and module_reload:
 			for widget in frame_reload.winfo_children():
