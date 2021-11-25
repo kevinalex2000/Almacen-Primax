@@ -5,6 +5,7 @@ from Modules.Productos import ModuleProductos
 from Modules.Compras import ModuleCompras
 from Modules.Clientes import ModuleClientes
 from Modules.Ventas import ModuleVentas
+from Modules.Historial import ModuleHistorial
 
 from Shared.Constants import Constants
 
@@ -70,3 +71,37 @@ class Ventana(Frame):
 		ModuleCompras(self.frame_compras)
 		ModuleClientes(self.frame_clientes)
 		ModuleVentas(self.frame_ventas)
+		ModuleHistorial(self.frame_ventas)
+
+		
+		self.frame_productos.bind("<<NotebookTabChanged>>", self.notebook_tab_changed)
+		self.paginas.bind("<<NotebookTabChanged>>", self.notebook_tab_changed)
+
+	def notebook_tab_changed(self,arg):
+		pagina_index = self.paginas.index(self.paginas.select())
+		
+		frame_reload = False
+		module_reload = False
+
+		if pagina_index == 1:
+			frame_reload = self.frame_productos
+			module_reload = ModuleProductos
+		elif pagina_index == 2:
+			frame_reload = self.frame_compras
+			module_reload = ModuleCompras
+		elif pagina_index == 3:
+			frame_reload = self.frame_ventas
+			module_reload = ModuleVentas
+		elif pagina_index == 4:
+			frame_reload = self.frame_clientes
+			module_reload = ModuleClientes
+		elif pagina_index == 5:
+			frame_reload = self.frame_estadisticas
+		elif pagina_index == 6:
+			frame_reload = self.frame_historial
+			module_reload = ModuleHistorial
+		
+		if frame_reload and module_reload:
+			for widget in frame_reload.winfo_children():
+				widget.destroy()
+			module_reload(frame_reload)
