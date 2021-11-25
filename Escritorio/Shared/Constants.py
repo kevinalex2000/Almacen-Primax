@@ -21,3 +21,9 @@ class Constants:
     @staticmethod
     def get_url_excel_detalle_compras():
         return "./Data/Detalles Compras.xlsx"
+    @staticmethod
+    def get_url_excel_ventas():
+        return "./Data/Ventas.xlsx"
+    @staticmethod
+    def get_url_excel_detalle_ventas():
+        return "./Data/Detalles Ventas.xlsx"
