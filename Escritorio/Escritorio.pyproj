@@ -29,6 +29,7 @@
     </Compile>
     <Compile Include="Modules\Clientes.py" />
     <Compile Include="Modules\Compras.py" />
+    <Compile Include="Modules\Estadisticas.py" />
     <Compile Include="Modules\Productos.py" />
     <Compile Include="Modules\Ventas.py" />
     <Compile Include="Shared\Constants.py">

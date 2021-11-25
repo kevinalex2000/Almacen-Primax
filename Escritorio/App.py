@@ -5,6 +5,7 @@ from Modules.Productos import ModuleProductos
 from Modules.Compras import ModuleCompras
 from Modules.Clientes import ModuleClientes
 from Modules.Ventas import ModuleVentas
+from Modules.Estadisticas import ModuleEstadisticas
 
 from Shared.Constants import Constants
 
@@ -70,3 +71,4 @@ class Ventana(Frame):
 		ModuleCompras(self.frame_compras)
 		ModuleClientes(self.frame_clientes)
 		ModuleVentas(self.frame_ventas)
+		ModuleEstadisticas(self.frame_estadisticas)
