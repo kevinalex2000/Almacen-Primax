@@ -200,7 +200,7 @@ class ModuleCompras:
                 Controls.mandar_informacion("Compra guardada exitosamente")     
             
             else:
-                Controls.mandar_advertencia("Agregue productos para la venta")
+                Controls.mandar_advertencia("Agregue productos para la compra")
         else:
             Controls.mandar_advertencia("Seleccione un proveedor para la compra")
 
