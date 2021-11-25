@@ -119,7 +119,7 @@ class ModuleVentas:
                     fila[3] = nueva_cantidad
                     fila[4] = float(nueva_cantidad) * float(self.precio.get())
                     nueva = False
-                    if self.validar_stock(codigo_producto,nueva_cantidad):
+                    if self.validar_stock_existente(codigo_producto,nueva_cantidad):
                         return Controls.mandar_advertencia("No hay stock del Producto")
             if nueva:
                 self.datos_tabla.append([codigo_producto,nombre_producto, self.precio.get(), self.cantidad.get(), float(self.precio.get())*float(self.cantidad.get())])
