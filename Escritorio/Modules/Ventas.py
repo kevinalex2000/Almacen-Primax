@@ -90,6 +90,7 @@ class ModuleVentas:
         for fila in datos.values:
             resultado.append(str(fila[0])+" - "+fila[1])
             index += 1
+        resultado.sort()
         return resultado
     
     def obtener_productos_combo(self):
@@ -99,6 +100,7 @@ class ModuleVentas:
         for fila in datos.values:
             resultado.append(fila[0]+" - "+fila[1])
             index += 1
+        resultado.sort()
         return resultado
 
     def agregar_producto(self):
@@ -207,7 +209,7 @@ class ModuleVentas:
                 d_detalle_ventas = Transform.dArray_to_array(datos_detalle_ventas.values)
 
                 codigo_venta = "V"+ str(len(d_ventas) + 1).zfill(4)
-                fecha_venta = datetime.today().strftime('%Y-%m-%d %H:%M')
+                fecha_venta = datetime.today().strftime('%d/%m/%Y %H:%M')
 
                 d_ventas.append([codigo_venta,fecha_venta,codigo_cliente,nombre_cliente, float(self.precio_total)])
 

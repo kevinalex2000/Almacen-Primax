@@ -177,7 +177,7 @@ class ModuleCompras:
                 d_detalle_compras = Transform.dArray_to_array(datos_detalle_compras.values)
 
                 codigo_compra = "D"+ str(len(d_compras) + 1).zfill(4)
-                fecha_compra = datetime.today().strftime('%Y-%m-%d %H:%M')
+                fecha_compra = datetime.today().strftime('%d/%m/%Y %H:%M')
 
                 d_compras.append([codigo_compra,fecha_compra,codigo_proveedor,nombre_proveedor, float(self.precio_total)])
 
@@ -192,7 +192,6 @@ class ModuleCompras:
                 Excel.guardar_excel(Constants.get_url_excel_compras(), self.HojaExcel, d_compras, datos_compras.columns)
                 Excel.guardar_excel(Constants.get_url_excel_detalle_compras(), self.HojaExcel, d_detalle_compras, datos_detalle_compras.columns)
             
-                
                 self.limpiar_campos()
                 self.combo_proveedor.set("")
                 self.tabla_compra.delete(*self.tabla_compra.get_children())

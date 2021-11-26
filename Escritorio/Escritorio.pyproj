@@ -24,6 +24,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.py" />
+    <Compile Include="DetallesHistorial.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Login.py">
       <SubType>Code</SubType>
     </Compile>
