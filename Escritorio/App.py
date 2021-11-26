@@ -5,11 +5,8 @@ from Modules.Productos import ModuleProductos
 from Modules.Compras import ModuleCompras
 from Modules.Clientes import ModuleClientes
 from Modules.Ventas import ModuleVentas
-<<<<<<< HEAD
 from Modules.Estadisticas import ModuleEstadisticas
-=======
 from Modules.Historial import ModuleHistorial
->>>>>>> b9d2633eeff27d6be03df44dd083f89e2014b842
 
 from Shared.Constants import Constants
 
@@ -75,9 +72,7 @@ class Ventana(Frame):
 		ModuleCompras(self.frame_compras)
 		ModuleClientes(self.frame_clientes)
 		ModuleVentas(self.frame_ventas)
-<<<<<<< HEAD
 		ModuleEstadisticas(self.frame_estadisticas)
-=======
 		ModuleHistorial(self.frame_ventas)
 
 		
@@ -112,4 +107,3 @@ class Ventana(Frame):
 			for widget in frame_reload.winfo_children():
 				widget.destroy()
 			module_reload(frame_reload)
->>>>>>> b9d2633eeff27d6be03df44dd083f89e2014b842
