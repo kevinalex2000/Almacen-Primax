@@ -32,9 +32,13 @@
     </Compile>
     <Compile Include="Modules\Clientes.py" />
     <Compile Include="Modules\Compras.py" />
+<<<<<<< HEAD
+    <Compile Include="Modules\Estadisticas.py" />
+=======
     <Compile Include="Modules\Historial.py">
       <SubType>Code</SubType>
     </Compile>
+>>>>>>> b9d2633eeff27d6be03df44dd083f89e2014b842
     <Compile Include="Modules\Productos.py" />
     <Compile Include="Modules\Ventas.py" />
     <Compile Include="Shared\Constants.py">
