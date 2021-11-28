@@ -68,8 +68,9 @@ class Ventana(Frame):
 		self.paginas.add(self.frame_estadisticas, text='Estadisticas')
 		self.paginas.add(self.frame_historial, text='Historial')
 		
+		## Creamos imagen de inicio
 		self.img = PhotoImage(file = "inicio.gif")
-  
+		## Creamos canvas que contendra la imagen
 		canvas1 = Canvas( self.frame_inicio, width = 400, 
 						 height = 400) 
 		canvas1.pack(fill = "both", expand = True) 

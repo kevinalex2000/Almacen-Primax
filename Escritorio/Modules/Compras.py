@@ -68,20 +68,21 @@ class ModuleCompras:
         self.tabla_compra.configure(yscrollcommand = ladoy.set) ## Configuramos comportamiento del scrollbar con la tabla
         self.tabla_compra['columns'] = ('Producto', 'Precio', 'Cantidad', 'Precio Total') ## Mencionamos las columnas tabla
         self.tabla_compra.column('#0', minwidth=100, width=120, anchor='center') ## Colocamos Columna index
-        self.tabla_compra.column('Producto', minwidth=100, width=130 , anchor='center') ## Colocamos Columna Nombre
+        self.tabla_compra.column('Producto', minwidth=100, width=130 , anchor='center') ## Colocamos Columna Producto
         self.tabla_compra.column('Precio', minwidth=100, width=120 , anchor='center') ## Colocamos Columna Precio
         self.tabla_compra.column('Cantidad', minwidth=100, width=105, anchor='center') ## Colocamos Columna Cantidad
         self.tabla_compra.column('Precio Total', minwidth=100, width=105, anchor='center') ## Colocamos Columna Precio Total
 
         self.tabla_compra.heading('#0', text='Codigo', anchor ='center') ## Colocamos Cabecera de columna index
-        self.tabla_compra.heading('Producto', text='Producto', anchor ='center') ## Colocamos Cabecera de columna Nombre
+        self.tabla_compra.heading('Producto', text='Producto', anchor ='center') ## Colocamos Cabecera de columna Producto
         self.tabla_compra.heading('Precio', text='Precio', anchor ='center') ## Colocamos Cabecera de columna Precio
         self.tabla_compra.heading('Cantidad', text='Cantidad', anchor ='center') ## Colocamos Cabecera de columna Cantidad
         self.tabla_compra.heading('Precio Total', text='Precio Total', anchor ='center') ## Colocamos Cabecera de columna Precio Total
 
         
-        Button(self.frame, text="Finalizar Compra", command=self.finalizar_compra).grid(columnspan=1, row=5, sticky='nsew', padx=10, pady=10)
+        Button(self.frame, text="Finalizar Compra", command=self.finalizar_compra).grid(columnspan=1, row=5, sticky='nsew', padx=10, pady=10) ## Creamos boton Finalizar compra
 
+    ## Obtiene proveedores para combobox
     def obtener_proveedores_combo(self):
         datos = Excel.obtener_excel(Constants.get_url_excel_proveedores(), self.HojaExcel)
         resultado = []
@@ -99,7 +100,8 @@ class ModuleCompras:
             resultado.append(fila[0]+" - "+fila[1])
             index += 1
         return resultado
-
+    
+    ## Agrega producto en tabla
     def agregar_producto(self):
         if self.validar_formulario() == True:
             combo_producto = self.combo_productos.get()
@@ -119,6 +121,7 @@ class ModuleCompras:
             self.listar_datos_tabla()
             self.limpiar_campos()
 
+    ## Quita producto de la tabla
     def quitar_producto(self):
         if self.combo_productos.get() != "":
             combo_producto = self.combo_productos.get()
@@ -133,6 +136,7 @@ class ModuleCompras:
         else:
             Controls.mandar_advertencia("Seleccione un producto")
 
+    ## Valida el formulario
     def validar_formulario(self):
         resultado = False
         if self.combo_productos.get() == "":
@@ -149,6 +153,7 @@ class ModuleCompras:
             resultado = True
         return resultado
     
+    ## Lista datos guardados temporalmente en tabla
     def listar_datos_tabla(self):
         self.tabla_compra.delete(*self.tabla_compra.get_children())
         precio_total = 0
@@ -160,11 +165,13 @@ class ModuleCompras:
             precio_total += float(arr_fila[4])
         self.precio_total = precio_total
 
+    ## Limpia los campos
     def limpiar_campos(self):
         self.combo_productos.set("")
         self.precio.set("")
         self.cantidad.set("")
 
+    ## Guarda la compra en los excels
     def finalizar_compra(self):
         if self.combo_proveedor.get() != "":
             if len(self.datos_tabla)>0:
@@ -207,6 +214,7 @@ class ModuleCompras:
         else:
             Controls.mandar_advertencia("Seleccione un proveedor para la compra")
 
+    ## Aumenta el stock del producto
     def sumar_stock(self,codigo, cantidad):
         datos = Excel.obtener_excel(Constants.get_url_excel_productos(), self.HojaExcel)
         values = Transform.dArray_to_array(datos.values)

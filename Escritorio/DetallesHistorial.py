@@ -8,11 +8,13 @@ from Shared.Constants import Constants
 class DetallesHistorial:
 
     def __init__(self, tipo,codigo_historia,codigo_tercero,nombre_tercero, fecha):
+        ## Creamos la nueva ventana
         self.index=Tk()
         title = ""
         tercero = ""
         self.ruta_excel = ""
 
+        ## Damos los datos dependiendo del tipo del historial
         if tipo == "ingreso":
             title = "Detalles de la Compra"
             tercero = "Proveedor"
@@ -22,8 +24,10 @@ class DetallesHistorial:
             tercero = "Cliente"
             self.ruta_excel = Constants.get_url_excel_detalle_ventas()
         
+        ## Colocamos el titulo de la ventana
         self.index.title(title+" " +codigo_historia)
 
+        ## Damos el tamaño y que no se pueda modificar 
         self.index.minsize(height= 500, width=400)
         self.index.resizable(width=False, height=False)
         
@@ -36,16 +40,19 @@ class DetallesHistorial:
         self.frame_label = Frame(self.frame_principal)
         self.frame_label.grid(column=0, row=1, pady = 10, sticky='nsew') ## Creamos la Grilla
 
+        ## Creamos Label del tercero
         lter= Label (self.frame_label, text=tercero+":")
         lter.grid(column=0, row=1, padx=10 , sticky='w')
         lter= Label (self.frame_label, text=nombre_tercero)
         lter.grid(column=1, row=1, padx=10 , sticky='w')
 
+        ## Creamos label de la fecha
         lfecha= Label (self.frame_label, text="Fecha y Hora: ")
         lfecha.grid(column=0, row=2, padx=10 , pady = 5, sticky='w')
         lfecha= Label (self.frame_label, text=fecha)
         lfecha.grid(column=1, row=2, padx=10 , sticky='w')
 
+        ## Listamos la tabla de detalles
         self.listar_tabla_detalles(codigo_historia)
 
         self.index.mainloop()
@@ -71,16 +78,18 @@ class DetallesHistorial:
         self.tabla_detalles.heading('Precio', text='Cantidad', anchor ='center') ## Colocamos Cabecera de columna Precio
         self.tabla_detalles.heading('Cantidad', text='Precio Unitario', anchor ='center') ## Colocamos Cabecera de columna Cantidad
 
+        ## OBtenemos los datos del excel
         datos = Excel.obtener_excel(self.ruta_excel, "Hoja1")
         values = Transform.dArray_to_array(datos.values)
 
         precio_total = 0
-
+        
+        ## Filtramos solo los de la venta o compra
         for dato in values:
             if dato[5] == codigo:
                 precio_total += float(dato[2])*float(dato[3])
                 self.tabla_detalles.insert("", "end", text = dato[0], values= (dato[1], dato[2], dato[3]))
 
-        
+        ## Colocamos label de precio total        
         lprecio_total= Label (self.frame_principal, text="Precio Total: "+str(precio_total),justify="right")
         lprecio_total.grid(column=0, row=8, padx=10 , pady = 10, sticky='w')
