@@ -50,6 +50,16 @@
     <Folder Include="Data\" />
     <Folder Include="Shared\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Data\Clientes.xlsx" />
+    <Content Include="Data\Compras.xlsx" />
+    <Content Include="Data\Detalles Compras.xlsx" />
+    <Content Include="Data\Detalles Ventas.xlsx" />
+    <Content Include="Data\Productos.xlsx" />
+    <Content Include="Data\Proveedores.xlsx" />
+    <Content Include="Data\Ventas.xlsx" />
+    <Content Include="inicio.gif" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
        Visual Studio and specify your pre- and post-build commands in

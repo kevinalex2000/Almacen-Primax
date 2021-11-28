@@ -44,7 +44,8 @@ def ingresar():
             ventana = Tk()
             ventana.title('Almacen de productos')
             ventana.minsize(height= 600, width=900)
-            ventana.geometry('1000x500+180+80')
+            ventana.resizable(width=False, height=False)
+            ventana.geometry('950x500+180+80')
             app = Ventana(ventana)
             app.mainloop()
 

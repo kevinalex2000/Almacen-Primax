@@ -2,7 +2,7 @@ from tkinter import  Tk, Button, Entry, Label, ttk, PhotoImage, LEFT
 from tkinter import  StringVar,Scrollbar,Frame,messagebox
 from tkinter.ttk import Style
 
-from Shared.Helpers import Controls, Excel, Transform
+from Shared.Helpers import Controls, Excel, Transform, Validacion
 from Shared.Constants import Constants
 
 class ModuleClientes:
@@ -76,14 +76,14 @@ class ModuleClientes:
         Button(frame_formulario_botones, text="Eliminar", command=self.btn_eliminar_click).grid(column=2, row=3, sticky='w')
 
     def btn_agregar_click(self):
-        if self.validar_campos_vacios():
+        if self.validar_campos():
             if self.buscar_dni_existente(self.dni.get()):
                 Controls.mandar_advertencia("El dni ya existe, por favor registre otro dni.")
             else:
                 self.insertar_cliente(self.dni.get(),self.nombre.get(),int(self.numero_celular.get()),self.direccion.get())
 
     def btn_modificar_click(self):
-        if self.validar_campos_vacios():
+        if self.validar_campos():
             if self.buscar_dni_existente(self.dni.get()):
                 self.modificar_cliente(self.dni.get(),self.nombre.get(),int(self.numero_celular.get()))
             else:
@@ -152,7 +152,7 @@ class ModuleClientes:
                 return True
         return False
 
-    def validar_campos_vacios(self):
+    def validar_campos(self):
         resultado = False
         if self.dni.get() == "":
             Controls.mandar_advertencia("El dni no puede estar vacio")
@@ -162,6 +162,10 @@ class ModuleClientes:
             Controls.mandar_advertencia("El numero de celular no puede estar vacio")
         elif self.direccion.get() == "":
             Controls.mandar_advertencia("La direccion no puede estar vacia")
+        elif Validacion.validar_cadena_como_entero(self.dni.get()) == False or Validacion.validar_n_caracteres(self.dni.get(),7) == False:
+            Controls.mandar_advertencia("Formato incorrecto, el dni debe tener 7 numeros")
+        elif Validacion.validar_cadena_como_entero(self.numero_celular.get()) == False:
+            Controls.mandar_advertencia("el numero celular debe contener solo numeros")
         else:
             resultado = True
         return resultado

@@ -1,4 +1,4 @@
-from tkinter import  Tk, Button, Entry, Label, ttk, PhotoImage, LEFT
+from tkinter import  Tk, Button, Entry, Label, ttk, PhotoImage, LEFT,Canvas
 from tkinter import  StringVar,Scrollbar,Frame
 
 from Modules.Productos import ModuleProductos
@@ -8,6 +8,7 @@ from Modules.Ventas import ModuleVentas
 from Modules.Estadisticas import ModuleEstadisticas
 from Modules.Historial import ModuleHistorial
 
+from PIL import ImageTk, Image
 from Shared.Constants import Constants
 
 class Ventana(Frame):
@@ -67,6 +68,14 @@ class Ventana(Frame):
 		self.paginas.add(self.frame_estadisticas, text='Estadisticas')
 		self.paginas.add(self.frame_historial, text='Historial')
 		
+		self.img = PhotoImage(file = "inicio.gif")
+  
+		canvas1 = Canvas( self.frame_inicio, width = 400, 
+						 height = 400) 
+		canvas1.pack(fill = "both", expand = True) 
+		canvas1.create_image( 0, 0, image = self.img,  
+							 anchor = "nw") 
+
 		## Agregamos controles a los frames
 		ModuleProductos(self.frame_productos)
 		ModuleCompras(self.frame_compras)

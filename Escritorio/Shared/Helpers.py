@@ -52,3 +52,23 @@ class Transform:
                 arrfila.append(valor)
             array.append(arrfila)
         return array
+
+class Validacion:
+    @staticmethod
+    def validar_n_caracteres(cadena, n):
+        if(len(cadena) == int(n)):
+            return True
+        else:
+            return False
+
+    @staticmethod
+    def validar_cadena_como_entero(cadena):
+        return True if cadena.isdigit() else False
+
+    @staticmethod
+    def validar_cadena_como_decimal(cadena):
+        try:
+            float(cadena)
+            return True
+        except:
+            return False

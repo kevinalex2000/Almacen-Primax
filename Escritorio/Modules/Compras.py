@@ -1,7 +1,7 @@
 from tkinter import  Tk, Button, Entry, Label, ttk, PhotoImage, LEFT
 from tkinter import  StringVar,Scrollbar,Frame,messagebox
 
-from Shared.Helpers import Controls, Excel, Transform
+from Shared.Helpers import Controls, Excel, Transform, Validacion
 from Shared.Constants import Constants
 
 from datetime import datetime
@@ -139,8 +139,12 @@ class ModuleCompras:
             Controls.mandar_advertencia("El nombre no puede estar vacio")
         elif self.precio.get() == "":
             Controls.mandar_advertencia("El precio no puede estar vacio")
-        elif self.cantidad.get() == "" and cantidad_necesario:
+        elif self.cantidad.get() == "":
             Controls.mandar_advertencia("La cantidad no puede ser vacia")
+        elif Validacion.validar_cadena_como_decimal(self.precio.get()) == False:
+            Controls.mandar_advertencia("El precio debe ser un numero")
+        elif Validacion.validar_cadena_como_entero(self.cantidad.get()) == False:
+            Controls.mandar_advertencia("la cantidad debe ser un numero entero")
         else:
             resultado = True
         return resultado

@@ -2,7 +2,7 @@ from tkinter import  Tk, Button, Entry, Label, ttk, PhotoImage, LEFT
 from tkinter import  StringVar,Scrollbar,Frame,messagebox
 from tkinter.ttk import Style
 
-from Shared.Helpers import Controls, Excel, Transform
+from Shared.Helpers import Controls, Excel, Transform, Validacion
 from Shared.Constants import Constants
 
 class ModuleProductos:
@@ -78,20 +78,23 @@ class ModuleProductos:
         Button(frame_formulario_botones, text="Eliminar", command=self.btn_eliminar_click).grid(column=2, row=3, sticky='w')
 
     def btn_agregar_click(self):
-        if self.validar_campos_vacios():
+        self.codigo.set(self.codigo.get().upper())
+        if self.validar_campos():
             if self.buscar_codigo_existente(self.codigo.get()):
                 Controls.mandar_advertencia("El codigo ya existe, por favor registre otro codigo.")
             else:
                 self.insertar_producto(self.codigo.get(),self.nombre.get(),float(self.precio.get()),int(self.cantidad_inicial.get()))
 
     def btn_modificar_click(self):
-        if self.validar_campos_vacios(False):
+        self.codigo.set(self.codigo.get().upper())
+        if self.validar_campos(False):
             if self.buscar_codigo_existente(self.codigo.get()):
                 self.modificar_producto(self.codigo.get(),self.nombre.get(),float(self.precio.get()))
             else:
                 Controls.mandar_advertencia("El codigo digitado no existe.")
                 
     def btn_eliminar_click(self):
+        self.codigo.set(self.codigo.get().upper())
         if self.codigo.get() != "":
             if self.buscar_codigo_existente(self.codigo.get()):
                 self.eliminar_producto(self.codigo.get())
@@ -154,16 +157,24 @@ class ModuleProductos:
                 return True
         return False
 
-    def validar_campos_vacios(self, cantidad_inicial_necesario = True):
+    def validar_campos(self, cantidad_inicial_necesario = True):
         resultado = False
+
         if self.codigo.get() == "":
             Controls.mandar_advertencia("El codigo no puede estar vacio")
         elif self.nombre.get() == "":
             Controls.mandar_advertencia("El nombre no puede estar vacio")
         elif self.precio.get() == "":
             Controls.mandar_advertencia("El precio no puede estar vacio")
+        elif Validacion.validar_n_caracteres(self.codigo.get(),5) == False:
+            Controls.mandar_advertencia("El codigo debe tener 5 caracteres.")
+        elif Validacion.validar_cadena_como_decimal(self.precio.get()) == False:
+            Controls.mandar_advertencia("El precio debe ser un numero")
+        ## Validar Cantidad Inicial
         elif self.cantidad_inicial.get() == "" and cantidad_inicial_necesario:
             Controls.mandar_advertencia("Agregar una cantidad inicial para continuar")
+        elif Validacion.validar_cadena_como_entero(self.cantidad_inicial.get()) == False and cantidad_inicial_necesario:
+            Controls.mandar_advertencia("La cantidad inicial debe ser un numero entero")
         else:
             resultado = True
         return resultado
